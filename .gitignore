@@ -1,0 +1,18 @@
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Python
+__pycache__/
+*.py[cod]
+.env
+.venv/
+venv/
+
+# Data (add if you don't want to upload large files)
+# *.csv
+# *.parquet
+
+# OS
+.DS_Store
+Thumbs.db
