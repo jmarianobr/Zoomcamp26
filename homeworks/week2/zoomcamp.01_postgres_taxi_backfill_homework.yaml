@@ -1,0 +1,14 @@
+id: 01_postgres_taxi_backfill_homework
+namespace: zoomcamp
+
+tasks:
+  - id: taxi_loop
+    type: io.kestra.plugin.core.flow.ForEach
+    values: ["yellow", "green"]
+    tasks:
+      - id: run_year_loop_subflow
+        type: io.kestra.plugin.core.flow.Subflow
+        flowId: 01_year_loop_subflow # Calls the new year loop subflow
+        namespace: zoomcamp
+        inputs:
+          currentTaxi: "{{ taskrun.value }}" # Passes the current taxi type as an input

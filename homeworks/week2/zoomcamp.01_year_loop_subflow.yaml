@@ -1,0 +1,20 @@
+id: 01_year_loop_subflow
+namespace: zoomcamp
+
+inputs:
+  - id: currentTaxi
+    type: STRING
+    description: The current taxi type (e.g., 'yellow', 'green') from the parent flow.
+
+tasks:
+  - id: year_loop
+    type: io.kestra.plugin.core.flow.ForEach
+    values: ["2020"]
+    tasks:
+      - id: run_month_loop_subflow
+        type: io.kestra.plugin.core.flow.Subflow
+        flowId: 01_month_loop_subflow # Calls the new month loop subflow
+        namespace: zoomcamp
+        inputs:
+          currentTaxi: "{{ inputs.currentTaxi }}" # Pass taxi from its input
+          currentYear: "{{ taskrun.value }}"      # Pass current year as an input
